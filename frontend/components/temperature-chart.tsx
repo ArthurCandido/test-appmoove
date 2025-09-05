@@ -20,7 +20,6 @@ export function TemperatureChart({ city, hourlyTemp }: TemperatureChartProps) {
       const { Chart, registerables } = await import("chart.js")
       Chart.register(...registerables)
 
-      // Destroy existing chart
       if (chartInstanceRef.current) {
         chartInstanceRef.current.destroy()
       }

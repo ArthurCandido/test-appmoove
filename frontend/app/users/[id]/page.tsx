@@ -127,7 +127,6 @@ export default function UserDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -149,7 +148,6 @@ export default function UserDetailsPage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4">
@@ -162,7 +160,6 @@ export default function UserDetailsPage() {
 
         <div className="max-w-4xl">
           <div className="grid gap-6">
-            {/* User Profile Card */}
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -326,7 +323,6 @@ export default function UserDetailsPage() {
               </CardContent>
             </Card>
 
-            {/* Additional Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>

@@ -22,7 +22,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -44,14 +43,12 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">Lista de Usuários</h2>
           <p className="text-muted-foreground">Gerencie e visualize todos os usuários cadastrados no sistema</p>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -86,7 +83,6 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* Filters and Actions */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1">
             <div className="relative">
@@ -114,7 +110,6 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Users List */}
         <div className="grid gap-4">
           {filteredUsers.map((user) => (
             <Card key={user.id} className="hover:shadow-md transition-shadow">

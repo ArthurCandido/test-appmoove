@@ -90,10 +90,8 @@ export default function NewUserPage() {
       router.push("/")
     } catch (error) {
       console.error("Erro ao salvar usuário:", error)
-      // Tenta extrair mensagem da API
       const anyErr = error as any
       const apiMsg = anyErr?.response?.data?.message || anyErr?.response?.data?.error
-      // Mapear erros do Zod para campos
       const issues = anyErr?.response?.data?.issues as Array<{ path: (string | number)[]; message: string }>
       if (Array.isArray(issues)) {
         const fieldErrors: Record<string, string> = {}
@@ -111,7 +109,6 @@ export default function NewUserPage() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }))
     }
@@ -119,7 +116,6 @@ export default function NewUserPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -141,7 +137,6 @@ export default function NewUserPage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4">

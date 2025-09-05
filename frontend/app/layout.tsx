@@ -19,8 +19,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // Ensure the API URL is available client-side for debugging
-  // console.log('API URL:', process.env.NEXT_PUBLIC_API_URL)
   return (
     <html lang="pt-BR">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>

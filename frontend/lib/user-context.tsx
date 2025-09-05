@@ -28,12 +28,10 @@ const UserContext = createContext<UserContextType | undefined>(undefined)
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [users, setUsers] = useState<User[]>([])
 
-  // Load users from API on mount
   useEffect(() => {
     const load = async () => {
       try {
         const res = await api.get<User[]>(`/users`)
-        // Normalize date types to string for UI
         const data = res.data.map((u: any) => ({
           ...u,
           createdAt: typeof u.createdAt === 'string' ? u.createdAt : new Date(u.createdAt).toISOString().split('T')[0],

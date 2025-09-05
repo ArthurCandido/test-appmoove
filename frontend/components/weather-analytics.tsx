@@ -22,7 +22,6 @@ export function WeatherAnalytics({ weatherData }: WeatherAnalyticsProps) {
       const { Chart, registerables } = await import("chart.js")
       Chart.register(...registerables)
 
-      // Destroy existing charts
       if (humidityChartInstanceRef.current) {
         humidityChartInstanceRef.current.destroy()
       }
@@ -30,7 +29,6 @@ export function WeatherAnalytics({ weatherData }: WeatherAnalyticsProps) {
         conditionsChartInstanceRef.current.destroy()
       }
 
-      // Humidity and other metrics chart
       const humidityCtx = humidityChartRef.current.getContext("2d")
       if (humidityCtx) {
         humidityChartInstanceRef.current = new Chart(humidityCtx, {
@@ -68,7 +66,6 @@ export function WeatherAnalytics({ weatherData }: WeatherAnalyticsProps) {
         })
       }
 
-      // Weather conditions comparison chart
       const conditionsCtx = conditionsChartRef.current.getContext("2d")
       if (conditionsCtx) {
         const metrics = [

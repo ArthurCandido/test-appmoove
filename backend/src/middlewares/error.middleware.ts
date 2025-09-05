@@ -8,7 +8,6 @@ export default function errorHandler(err: any, req: Request, res: Response, next
   }
 
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
-    // Unique constraint failed
     if (err.code === 'P2002') {
       return res.status(409).json({ message: 'Unique constraint failed', meta: err.meta });
     }

@@ -9,7 +9,6 @@ interface WeatherMapProps {
   temperature: number
 }
 
-// City coordinates for Brazilian cities
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
   "São Paulo": { lat: -23.5505, lng: -46.6333 },
   "Rio de Janeiro": { lat: -22.9068, lng: -43.1729 },
@@ -33,11 +32,9 @@ export function WeatherMap({ city, temperature }: WeatherMapProps) {
     const coordinates = cityCoordinates[city]
     if (!coordinates) return
 
-    // Dynamic import of Leaflet to avoid SSR issues
     const initMap = async () => {
       const L = (await import("leaflet")).default
 
-      // Import Leaflet CSS
       if (!document.querySelector('link[href*="leaflet.css"]')) {
         const link = document.createElement("link")
         link.rel = "stylesheet"
@@ -45,20 +42,16 @@ export function WeatherMap({ city, temperature }: WeatherMapProps) {
         document.head.appendChild(link)
       }
 
-      // Clear existing map
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove()
       }
 
-      // Create new map
       const map = L.map(mapRef.current).setView([coordinates.lat, coordinates.lng], 10)
 
-      // Add tile layer
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors",
       }).addTo(map)
 
-      // Custom marker icon
       const customIcon = L.divIcon({
         html: `
           <div style="
@@ -83,7 +76,6 @@ export function WeatherMap({ city, temperature }: WeatherMapProps) {
         iconAnchor: [20, 20],
       })
 
-      // Add marker
       L.marker([coordinates.lat, coordinates.lng], { icon: customIcon })
         .addTo(map)
         .bindPopup(`
@@ -96,7 +88,6 @@ export function WeatherMap({ city, temperature }: WeatherMapProps) {
 
       mapInstanceRef.current = map
 
-      // Resize map after a short delay
       setTimeout(() => {
         map.invalidateSize()
       }, 100)

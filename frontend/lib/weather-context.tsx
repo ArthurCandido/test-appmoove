@@ -33,7 +33,6 @@ interface WeatherContextType {
 
 const WeatherContext = createContext<WeatherContextType | undefined>(undefined)
 
-// Enhanced mock weather data with more realistic information
 const mockWeatherDatabase: Record<string, WeatherData> = {
   "São Paulo": {
     city: "São Paulo",
@@ -211,7 +210,6 @@ export function WeatherProvider({ children }: { children: React.ReactNode }) {
   const [favoritesCities, setFavoritesCities] = useState<string[]>([])
   const [searchHistory, setSearchHistory] = useState<string[]>([])
 
-  // Load data from localStorage on mount
   useEffect(() => {
     const savedFavorites = localStorage.getItem("weather-favorites")
     const savedHistory = localStorage.getItem("weather-history")
@@ -225,12 +223,10 @@ export function WeatherProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  // Save favorites to localStorage
   useEffect(() => {
     localStorage.setItem("weather-favorites", JSON.stringify(favoritesCities))
   }, [favoritesCities])
 
-  // Save history to localStorage
   useEffect(() => {
     localStorage.setItem("weather-history", JSON.stringify(searchHistory))
   }, [searchHistory])
@@ -246,7 +242,7 @@ export function WeatherProvider({ children }: { children: React.ReactNode }) {
   const addToHistory = (city: string) => {
     setSearchHistory((prev) => {
       const filtered = prev.filter((c) => c !== city)
-      return [city, ...filtered].slice(0, 10) // Keep only last 10 searches
+  return [city, ...filtered].slice(0, 10)
     })
   }
 

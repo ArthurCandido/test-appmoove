@@ -63,7 +63,6 @@ export default function WeatherPage() {
     if (!selectedCity) return
 
     setIsRefreshing(true)
-    // Simulate API call delay
     setTimeout(() => {
       setIsRefreshing(false)
     }, 1000)
@@ -97,7 +96,6 @@ export default function WeatherPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -119,7 +117,6 @@ export default function WeatherPage() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">Informações Climáticas</h2>
@@ -127,9 +124,7 @@ export default function WeatherPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
-            {/* City Selection */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
@@ -165,7 +160,6 @@ export default function WeatherPage() {
               </CardContent>
             </Card>
 
-            {/* Favorites */}
             {favoritesCities.length > 0 && (
               <Card>
                 <CardHeader>
@@ -192,7 +186,6 @@ export default function WeatherPage() {
               </Card>
             )}
 
-            {/* Search History */}
             {searchHistory.length > 0 && (
               <Card>
                 <CardHeader>
@@ -225,11 +218,9 @@ export default function WeatherPage() {
             )}
           </div>
 
-          {/* Main Weather Content */}
           <div className="lg:col-span-3">
             {weatherData ? (
               <div className="space-y-6">
-                {/* Current Weather Header */}
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -246,7 +237,6 @@ export default function WeatherPage() {
                   </CardContent>
                 </Card>
 
-                {/* Alerts */}
                 {weatherData.alerts.length > 0 && (
                   <Card>
                     <CardHeader>
@@ -264,7 +254,6 @@ export default function WeatherPage() {
                   </Card>
                 )}
 
-                {/* Weather Details Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <Card>
                     <CardContent className="p-4 text-center">
@@ -299,7 +288,6 @@ export default function WeatherPage() {
                   </Card>
                 </div>
 
-                {/* Additional Info */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card>
                     <CardHeader>
@@ -346,13 +334,10 @@ export default function WeatherPage() {
                   </Card>
                 </div>
 
-                {/* Temperature Chart */}
                 <TemperatureChart city={selectedCity} hourlyTemp={weatherData.hourlyTemp} />
 
-                {/* Weather Analytics */}
                 <WeatherAnalytics weatherData={weatherData} />
 
-                {/* Weather Map */}
                 <WeatherMap city={selectedCity} temperature={weatherData.temperature} />
               </div>
             ) : (
