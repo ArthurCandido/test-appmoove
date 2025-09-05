@@ -79,13 +79,30 @@ export default function NewUserPage() {
     setSubmitError("")
 
     try {
-      await addUser(formData)
+      const payload = {
+        ...formData,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        city: formData.city.trim(),
+      }
+      await addUser(payload)
       router.push("/")
     } catch (error) {
       console.error("Erro ao salvar usuário:", error)
       // Tenta extrair mensagem da API
       const anyErr = error as any
       const apiMsg = anyErr?.response?.data?.message || anyErr?.response?.data?.error
+      // Mapear erros do Zod para campos
+      const issues = anyErr?.response?.data?.issues as Array<{ path: (string | number)[]; message: string }>
+      if (Array.isArray(issues)) {
+        const fieldErrors: Record<string, string> = {}
+        for (const issue of issues) {
+          const key = (issue.path?.[0] as string) || ""
+          if (key) fieldErrors[key] = issue.message
+        }
+        if (Object.keys(fieldErrors).length > 0) setErrors(fieldErrors)
+      }
       setSubmitError(apiMsg || "Falha ao salvar. Verifique os dados e tente novamente.")
     } finally {
       setIsSubmitting(false)
